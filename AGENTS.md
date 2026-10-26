@@ -16,4 +16,13 @@ Notes for coding agents working on this repository. README.md has the deploy and
   - Tap targets are at least 56px, and links are underlined.
   - Use the app's colours. Orange is for shapes only, never text.
   - Respect `prefers-reduced-motion`.
+- The layout follows https://www.khyaal.com/us, in Mentu's colours. New pages reuse it:
+  - Colours are tokens on `:root` in `index.html`. Use the tokens, not new hex values.
+  - The top band is gold, with a very large, extra-bold, uppercase headline. Its size uses
+    `clamp()` so it fits a 360px screen.
+  - Nav links are small, uppercase and split by thin lines.
+  - Cards have 20px corners and a thin warm border on cream. Buttons have 12px corners and
+    uppercase text.
+  - One dark brown band per page at most, with cream text. The footer is dark brown too.
+  - Never copy Khyaal's photos, logos, copy or numbers. Never invent users, ratings or reviews.
 - Write in the app's plain voice: short sentences, "tap" not "click", and straight quotes.
