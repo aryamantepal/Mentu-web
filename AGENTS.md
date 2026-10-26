@@ -24,5 +24,8 @@ Notes for coding agents working on this repository. README.md has the deploy and
   - Cards have 20px corners and a thin warm border on cream. Buttons have 12px corners and
     uppercase text.
   - One dark brown band per page at most, with cream text. The footer is dark brown too.
+  - "How it works" is a scroll tour built with CSS `animation-timeline`, with no JavaScript. It
+    only runs in browsers that support it and for readers who allow motion. Everyone else sees
+    the three step cards. Keep any new motion behind the same `@supports` and media check.
   - Never copy Khyaal's photos, logos, copy or numbers. Never invent users, ratings or reviews.
 - Write in the app's plain voice: short sentences, "tap" not "click", and straight quotes.

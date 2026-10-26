@@ -127,7 +127,7 @@
     .callout {
       position: absolute; right: 4.8rem; bottom: 2.2rem;
       background: var(--gold-light); border: 2px solid var(--gold);
-      border-radius: 0.7rem; padding: 0.35rem 0.6rem; font-size: 1rem; font-weight: 700;
+      border-radius: 0.7rem; padding: 0.35rem 0.6rem; font-size: 1rem; font-weight: 700; white-space: nowrap;
     }
 
     .card {
@@ -145,6 +145,70 @@
     }
     .steps h3 { margin-bottom: 0.4rem; }
     .steps p { margin: 0; }
+
+    /* The tour is a plain section unless the browser supports scroll-driven animations and the
+       reader allows motion. Then it pins for two screens of scrolling while a cream circle grows
+       over the gold and the phone plays the three steps. */
+    .tour-circle, .tour-phone { display: none; }
+    .mic {
+      flex: none; align-self: center; margin-top: auto;
+      width: 3.5rem; height: 3.5rem; border-radius: 50%;
+      background: var(--blue); box-shadow: 0 0 0 0.4rem var(--gold-light);
+    }
+    .caption { align-self: center; margin-bottom: 1.5rem; font-weight: 700; }
+    .row.picked { height: 3rem; border: 0.25rem solid var(--gold); }
+
+    @supports (animation-timeline: view()) {
+      @media (prefers-reduced-motion: no-preference) {
+        .tour { height: 300svh; padding: 0; background: var(--gold); view-timeline: --tour block; }
+        .tour-stage {
+          position: sticky; top: 0; height: 100svh; overflow: hidden;
+          display: flex; align-items: center;
+        }
+        .tour-grid { position: relative; width: 100%; display: grid; gap: 1.5rem; align-items: center; }
+        @media (min-width: 46rem) { .tour-grid { grid-template-columns: 1.3fr 1fr; gap: 3rem; } }
+
+        .tour-circle {
+          display: block; position: absolute; left: 50%; top: 50%;
+          width: 40vmax; height: 40vmax; margin: -20vmax 0 0 -20vmax;
+          border-radius: 50%; background: var(--cream);
+          animation: tour-grow linear both;
+          animation-timeline: --tour; animation-range: contain 0% contain 30%;
+        }
+
+        .tour .steps { display: grid; grid-template-columns: none; }
+        .tour .steps li { grid-area: 1 / 1; }
+
+        .tour-phone {
+          display: grid; grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+          height: min(30rem, 40svh); width: auto; min-height: 0;
+          justify-self: center;
+        }
+        .tour-screen { grid-area: 1 / 1; min-height: 0; overflow: hidden; }
+        .tour .callout { right: 0.6rem; bottom: 4.4rem; }
+        .tour-phone .screen { padding: 0.8rem 0.5rem; }
+        .tour-phone .bubble { font-size: 0.7rem; padding: 0.5rem; }
+        .tour-phone .mic { width: 2.5rem; height: 2.5rem; }
+        @media (min-width: 46rem) {
+          .tour-phone { height: min(32rem, 72svh); }
+          .tour .callout { right: 4.8rem; bottom: 2.2rem; }
+          .tour-phone .screen { padding: 1rem 0.9rem; }
+          .tour-phone .bubble { font-size: 1rem; padding: 0.6rem 0.7rem; }
+          .tour-phone .mic { width: 3.5rem; height: 3.5rem; }
+        }
+
+        .tour .steps li, .tour-screen {
+          animation: linear both; animation-timeline: --tour; animation-range: contain;
+        }
+        .tour .steps li:nth-child(1), .tour-screen:nth-child(1) { animation-name: tour-first; }
+        .tour .steps li:nth-child(2), .tour-screen:nth-child(2) { animation-name: tour-second; }
+        .tour .steps li:nth-child(3), .tour-screen:nth-child(3) { animation-name: tour-third; }
+      }
+    }
+    @keyframes tour-grow { from { transform: scale(0.2); } to { transform: scale(3.6); } }
+    @keyframes tour-first { 0%, 28% { opacity: 1; } 34%, 100% { opacity: 0; } }
+    @keyframes tour-second { 0%, 28% { opacity: 0; } 34%, 61% { opacity: 1; } 67%, 100% { opacity: 0; } }
+    @keyframes tour-third { 0%, 61% { opacity: 0; } 67%, 100% { opacity: 1; } }
 
     .examples { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
     @media (min-width: 46rem) { .examples { grid-template-columns: repeat(2, 1fr); } }
@@ -222,14 +286,39 @@
       </div>
     </section>
 
-    <section aria-labelledby="how">
-      <div class="wrap">
-        <h2 id="how">How it works</h2>
-        <ol class="steps">
-          <li class="card"><h3>Say what you want</h3><p>Tell Mentu what you want to do, in your own words.</p></li>
-          <li class="card"><h3>Look for the gold ring</h3><p>The ring circles the button to tap next.</p></li>
-          <li class="card"><h3>Tap it yourself</h3><p>Mentu waits for your tap, then shows you the next step.</p></li>
-        </ol>
+    <section class="tour" aria-labelledby="how">
+      <div class="tour-stage">
+        <div class="tour-circle" aria-hidden="true"></div>
+        <div class="wrap tour-grid">
+          <div>
+            <h2 id="how">How it works</h2>
+            <ol class="steps">
+              <li class="card"><h3>Say what you want</h3><p>Tell Mentu what you want to do, in your own words.</p></li>
+              <li class="card"><h3>Look for the gold ring</h3><p>The ring circles the button to tap next.</p></li>
+              <li class="card"><h3>Tap it yourself</h3><p>Mentu waits for your tap, then shows you the next step.</p></li>
+            </ol>
+          </div>
+          <div class="phone tour-phone" aria-hidden="true">
+            <div class="screen tour-screen">
+              <div class="bubble">"Send a photo on WhatsApp"</div>
+              <div class="mic"></div>
+              <div class="caption">Listening...</div>
+            </div>
+            <div class="screen tour-screen">
+              <div class="row"></div>
+              <div class="row"></div>
+              <div class="row"></div>
+              <div class="callout">Tap here</div>
+              <div class="target"></div>
+            </div>
+            <div class="screen tour-screen">
+              <div class="bubble">Now tap the photo you want to send</div>
+              <div class="row"></div>
+              <div class="row picked"></div>
+              <div class="row"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
