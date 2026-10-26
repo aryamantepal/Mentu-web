@@ -25,14 +25,14 @@
       --cream: #FBF6EC;
       --paper: #FFFDF8;
       --sand: #F2E8D5;
+      --line: #E0D2B8;
       --ink: #2A2320;
       --ink-muted: #5A4E44;
-      --blue: #27509A;
-      --orange: #EE934A;
+      --brown: #4C2B1A;
       --gold: #E9B949;
       --gold-light: #FFE8A0;
-      --line: #E0D2B8;
-      --outline: #9A8A70;
+      --orange: #EE934A;
+      --blue: #27509A;
     }
     *, *::before, *::after { box-sizing: border-box; }
     html { font-size: 125%; } /* 20px body that still follows the browser's text size */
@@ -43,35 +43,59 @@
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
       font-size: 1rem;
       line-height: 1.5;
+      overflow-wrap: break-word;
     }
     a { color: var(--blue); text-decoration: underline; text-underline-offset: 0.15em; }
-    a:focus-visible, .button:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
-    .wrap { max-width: 56rem; margin: 0 auto; padding: 0 1rem; }
+    a:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+    p { margin: 0 0 1rem; }
+    .wrap { max-width: 72rem; margin: 0 auto; padding: 0 1rem; }
+    section { padding: 3.5rem 0; }
 
-    header { padding: 1.25rem 0; }
-    header .wrap { display: flex; align-items: center; gap: 0.6rem; }
+    .top { background: var(--gold); }
+    .top .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1rem; padding-top: 1rem; padding-bottom: 1rem; }
+    .brand { display: flex; align-items: center; gap: 0.6rem; font-weight: 800; font-size: 1.3rem; letter-spacing: -0.01em; }
     .mark {
       width: 2.4rem; height: 2.4rem; border-radius: 0.6rem;
       background: var(--orange); display: grid; place-items: center;
     }
     .mark span { width: 0.9rem; height: 0.9rem; border-radius: 50%; border: 0.22rem solid var(--paper); }
-    .brand { font-weight: 800; font-size: 1.3rem; letter-spacing: -0.02em; }
 
-    .hero { padding: 2rem 0 3rem; display: grid; gap: 2.5rem; align-items: center; }
-    @media (min-width: 46rem) { .hero { grid-template-columns: 1.2fr 1fr; } }
-    h1 { font-size: clamp(2.2rem, 7vw, 3.4rem); line-height: 1.08; letter-spacing: -0.03em; margin: 0 0 1rem; }
-    h2 { font-size: 1.6rem; line-height: 1.25; margin: 0 0 0.75rem; }
-    h3 { font-size: 1.2rem; margin: 0 0 0.4rem; }
-    p { margin: 0 0 1rem; }
-    .lede { font-size: 1.2rem; color: var(--ink-muted); }
+    .nav { display: none; }
+    @media (min-width: 46rem) { .nav { display: block; } }
+    .nav ul { display: flex; list-style: none; margin: 0; padding: 0; }
+    .nav li + li { border-left: 1px solid var(--brown); }
+    .nav a {
+      display: flex; align-items: center; min-height: 3rem; padding: 0 1.1rem;
+      color: var(--ink); font-size: 1rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.04em;
+    }
+
+    .hero { background: var(--gold); padding: 2.5rem 0 4.5rem; }
+    .hero .wrap { display: grid; gap: 3rem; align-items: center; }
+    @media (min-width: 46rem) { .hero .wrap { grid-template-columns: 1.3fr 1fr; } }
+    h1 {
+      margin: 0 0 1.75rem;
+      font-size: clamp(3rem, 9vw, 8rem);
+      font-weight: 800; line-height: 0.85; letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+    h2 {
+      margin: 0 0 1.5rem;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 800; line-height: 0.95; letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+    h3 { margin: 0 0 0.5rem; font-size: 1.35rem; font-weight: 800; line-height: 1.2; text-transform: uppercase; }
+    .lede { font-size: 1.25rem; font-weight: 500; max-width: 34rem; margin: 0 0 2rem; }
+    .note { margin: 1rem 0 0; }
 
     .button {
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      min-height: 3.6rem; padding: 0.9rem 1.6rem; border-radius: 1rem;
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 3.6rem; padding: 1rem 2rem; border-radius: 0.6rem;
       background: var(--blue); color: var(--paper);
-      font: inherit; font-size: 1.15rem; font-weight: 700; text-decoration: none;
+      font-size: 1.15rem; font-weight: 700; letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
-    .note { font-size: 1rem; color: var(--ink-muted); margin-top: 0.75rem; }
 
     /* A phone with the gold "tap here" ring, like the app's guidance. */
     .phone {
@@ -84,7 +108,7 @@
     }
     .bubble {
       background: var(--sand); border-radius: 0.8rem; padding: 0.6rem 0.7rem;
-      font-size: 0.8rem; line-height: 1.35;
+      font-size: 1rem; line-height: 1.3;
     }
     .row { height: 1.6rem; border-radius: 0.5rem; background: var(--cream); border: 1px solid var(--line); }
     .target {
@@ -101,94 +125,155 @@
     @keyframes ring { from { transform: scale(1); opacity: 0.9; } to { transform: scale(1.8); opacity: 0; } }
     @media (prefers-reduced-motion: reduce) { .target::after { animation: none; } }
     .callout {
-      position: absolute; right: 4.6rem; bottom: 2.2rem;
+      position: absolute; right: 4.8rem; bottom: 2.2rem;
       background: var(--gold-light); border: 2px solid var(--gold);
-      border-radius: 0.7rem; padding: 0.35rem 0.6rem; font-size: 0.75rem; font-weight: 700;
+      border-radius: 0.7rem; padding: 0.35rem 0.6rem; font-size: 1rem; font-weight: 700;
     }
 
-    section { padding: 2.5rem 0; border-top: 1px solid var(--line); }
-    .quote {
-      background: var(--paper); border: 1px solid var(--line); border-radius: 1.25rem;
-      padding: 1.5rem; font-size: 1.15rem;
+    .card {
+      background: var(--paper); border: 1px solid var(--line); border-radius: 1rem; padding: 1.5rem;
     }
+    .quote { font-size: 1.15rem; margin: 0; }
+
     .steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; counter-reset: step; }
     @media (min-width: 46rem) { .steps { grid-template-columns: repeat(3, 1fr); } }
-    .steps li {
-      background: var(--paper); border: 1px solid var(--line); border-radius: 1.25rem; padding: 1.25rem;
-      counter-increment: step;
-    }
+    .steps li { counter-increment: step; }
     .steps li::before {
       content: counter(step); display: grid; place-items: center;
       width: 2.4rem; height: 2.4rem; border-radius: 50%; margin-bottom: 0.75rem;
-      background: var(--gold); font-weight: 800;
+      background: var(--gold); color: var(--ink); font-weight: 800;
     }
-    .promise { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.75rem; }
-    .promise li { padding-left: 2rem; position: relative; }
+    .steps h3 { margin-bottom: 0.4rem; }
+    .steps p { margin: 0; }
+
+    .examples { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
+    @media (min-width: 46rem) { .examples { grid-template-columns: repeat(2, 1fr); } }
+    .examples li { display: flex; align-items: center; gap: 0.9rem; font-size: 1.35rem; font-weight: 700; }
+    .examples li::before {
+      content: ""; flex: none; width: 0.9rem; height: 0.9rem; border-radius: 50%; background: var(--orange);
+    }
+
+    .band {
+      background-color: var(--brown);
+      background-image: linear-gradient(90deg, var(--brown), color-mix(in srgb, var(--brown), var(--cream) 22%));
+      color: var(--cream);
+    }
+    .band h2 { color: var(--cream); }
+    .promise { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.9rem; }
+    .promise li { padding-left: 2.2rem; position: relative; }
     .promise li::before {
       content: ""; position: absolute; left: 0; top: 0.35em;
       width: 1.1rem; height: 1.1rem; border-radius: 50%; background: var(--orange);
     }
 
-    footer { padding: 2rem 0 3rem; border-top: 1px solid var(--line); color: var(--ink-muted); font-size: 1rem; }
-    footer nav { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-bottom: 1rem; }
-    footer a { display: inline-block; padding: 0.4rem 0; }
+    .languages { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .languages li {
+      background: var(--paper); border: 1px solid var(--line); border-radius: 999px;
+      padding: 0.6rem 1.4rem; font-size: 1.15rem; font-weight: 700;
+    }
+
+    .families p { margin: 0; color: var(--ink-muted); }
+
+    footer { background: var(--brown); color: var(--cream); padding: 2.5rem 0 3rem; }
   </style>
 </head>
 <body>
-  <header>
+  <header class="top">
     <div class="wrap">
-      <div class="mark" aria-hidden="true"><span></span></div>
-      <span class="brand">Mentu</span>
+      <div class="brand"><span class="mark" aria-hidden="true"><span></span></span>Mentu</div>
+      <nav class="nav" aria-label="On this page">
+        <ul>
+          <li><a href="#what">What is Mentu</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#promise">Our promise</a></li>
+          <li><a href="#families">Families</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
-  <main class="wrap">
-    <div class="hero">
-      <div>
-        <h1>Say what you want to do. Mentu shows you where to tap.</h1>
-        <p class="lede">Mentu is your patient phone teacher. It shows you each step on your own phone, so you know how to do it next time.</p>
-        <span class="button" role="img" aria-label="Coming soon to Google Play">Coming soon to Google Play</span>
-        <p class="note">Mentu is free and works on Android phones.</p>
-      </div>
-      <div class="phone" role="img" aria-label="A phone screen. Mentu has heard 'send a photo on WhatsApp' and a gold ring circles the button to tap next.">
-        <div class="screen" aria-hidden="true">
-          <div class="bubble">"Send a photo on WhatsApp"</div>
-          <div class="row"></div>
-          <div class="row"></div>
-          <div class="row"></div>
-          <div class="callout">Tap here</div>
-          <div class="target"></div>
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <h1>Say what you want to do. Mentu shows you where to tap.</h1>
+          <p class="lede">Mentu is your patient phone teacher. It shows you each step on your own phone, so you know how to do it next time.</p>
+          <span class="button" role="img" aria-label="Coming soon to Google Play">Coming soon to Google Play</span>
+          <p class="note">Mentu is free and works on Android phones.</p>
+        </div>
+        <div class="phone" role="img" aria-label="A phone screen. Mentu has heard 'send a photo on WhatsApp' and a gold ring circles the button to tap next.">
+          <div class="screen" aria-hidden="true">
+            <div class="bubble">"Send a photo on WhatsApp"</div>
+            <div class="row"></div>
+            <div class="row"></div>
+            <div class="row"></div>
+            <div class="callout">Tap here</div>
+            <div class="target"></div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <section aria-labelledby="what">
-      <h2 id="what">What is Mentu?</h2>
-      <p class="quote">Mentu is a free Android app that helps people who find phones hard. You say what you want to do, like "send a photo on WhatsApp", and Mentu highlights where to tap on your own screen, one step at a time. It teaches; it never taps for you.</p>
+      <div class="wrap">
+        <h2 id="what">What is Mentu?</h2>
+        <p class="card quote">Mentu is a free Android app that helps people who find phones hard. You say what you want to do, like "send a photo on WhatsApp", and Mentu highlights where to tap on your own screen, one step at a time. It teaches; it never taps for you.</p>
+      </div>
     </section>
 
     <section aria-labelledby="how">
-      <h2 id="how">How it works</h2>
-      <ol class="steps">
-        <li><h3>Say what you want</h3><p>Tell Mentu what you want to do, in your own words.</p></li>
-        <li><h3>Look for the gold ring</h3><p>The ring circles the button to tap next.</p></li>
-        <li><h3>Tap it yourself</h3><p>Mentu waits for your tap, then shows you the next step.</p></li>
-      </ol>
+      <div class="wrap">
+        <h2 id="how">How it works</h2>
+        <ol class="steps">
+          <li class="card"><h3>Say what you want</h3><p>Tell Mentu what you want to do, in your own words.</p></li>
+          <li class="card"><h3>Look for the gold ring</h3><p>The ring circles the button to tap next.</p></li>
+          <li class="card"><h3>Tap it yourself</h3><p>Mentu waits for your tap, then shows you the next step.</p></li>
+        </ol>
+      </div>
     </section>
 
-    <section aria-labelledby="promise">
-      <h2 id="promise">Our promise</h2>
-      <ul class="promise">
-        <li>Mentu teaches. It never taps for you.</li>
-        <li>It never reads your passwords or PINs.</li>
-        <li>It never works on payment screens.</li>
-        <li>Mentu never keeps what's on your screen.</li>
-      </ul>
+    <section aria-labelledby="examples">
+      <div class="wrap">
+        <h2 id="examples">Things you can say</h2>
+        <ul class="examples">
+          <li class="card">"Send a photo on WhatsApp"</li>
+          <li class="card">"Video call on WhatsApp"</li>
+          <li class="card">"Make text bigger"</li>
+          <li class="card">"Turn on Wi-Fi"</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="band" aria-labelledby="promise">
+      <div class="wrap">
+        <h2 id="promise">Our promise</h2>
+        <ul class="promise">
+          <li>Mentu teaches. It never taps for you.</li>
+          <li>It never reads your passwords or PINs.</li>
+          <li>It never works on payment screens.</li>
+          <li>Mentu never keeps what's on your screen.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="languages">
+      <div class="wrap">
+        <h2 id="languages">Languages</h2>
+        <ul class="languages">
+          <li>English</li>
+          <li>Hindi</li>
+          <li>Arabic</li>
+        </ul>
+      </div>
     </section>
 
     <section aria-labelledby="families">
-      <h2 id="families">Helping a parent with their phone?</h2>
-      <p>Set Mentu up for them once. After that, they can ask Mentu instead of waiting for you to call back.</p>
+      <div class="wrap">
+        <div class="card families">
+          <h2 id="families">Helping a parent with their phone?</h2>
+          <p>Set Mentu up for them once. After that, they can ask Mentu instead of waiting for you to call back.</p>
+        </div>
+      </div>
     </section>
   </main>
 
