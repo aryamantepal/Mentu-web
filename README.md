@@ -1,6 +1,6 @@
 # Mentu-web
 
-The public website for [Mentu](https://github.com/Rinda211/Mentu), a voice-guided Android helper for
+The public website for [Mentu](https://github.com/krizer18/Mentu), a voice-guided Android helper for
 older adults. The plan for the site, its pages and its SEO is `website.md` in the Mentu repository.
 
 Live at https://mentu-web-fawn.vercel.app until the domain is bought.
@@ -13,19 +13,16 @@ terms, help, guides).
 
 ## Deploying
 
-The site is on Vercel as the project `mentu-web` (team `aryamantepals-projects`, Hobby plan).
-Deploy from this folder with:
+The site is on Vercel as the project `mentu-web` (team `aryamantepals-projects`, Hobby plan),
+connected to this GitHub repository. Each push to `main` deploys to production, and each pull
+request gets a preview link. Previews have Vercel Authentication on, so open them signed in to
+Vercel, or fetch them with `vercel curl`.
 
-```sh
-vercel deploy --prod --project mentu-web
-```
+To deploy by hand from this folder, run `vercel deploy --prod`. It deploys whatever is checked
+out, so run it from `main`, or production gets ahead of `main` and the next push undoes it.
 
 `mentu-web.vercel.app` belongs to someone else's project, so Vercel gave this one
 `mentu-web-fawn.vercel.app`.
-
-The GitHub repository isn't connected to Vercel yet, so a push doesn't deploy. Connect it in
-Vercel → mentu-web → Settings → Git, or with `vercel git connect`. After that, each push to `main`
-deploys to production and each pull request gets a preview link.
 
 ## Adding the domain later
 
