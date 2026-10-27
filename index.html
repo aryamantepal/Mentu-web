@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mentu, your patient phone teacher</title>
   <meta name="description" content="Mentu is a free Android app for people who find phones hard. Say what you want to do, and Mentu shows you where to tap, one step at a time.">
-  <meta name="theme-color" content="#FBF6EC">
+  <meta name="theme-color" content="#E9B949">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Mentu, your patient phone teacher">
   <meta property="og:description" content="Say what you want to do. Mentu shows you where to tap.">
@@ -85,7 +85,7 @@
       font-weight: 800; line-height: 0.95; letter-spacing: -0.02em;
       text-transform: uppercase;
     }
-    h3 { margin: 0 0 0.5rem; font-size: 1.35rem; font-weight: 800; line-height: 1.2; text-transform: uppercase; }
+    h3 { margin: 0 0 0.5rem; font-size: 1.35rem; font-weight: 800; line-height: 1.2; }
     .lede { font-size: 1.25rem; font-weight: 500; max-width: 34rem; margin: 0 0 2rem; }
     .note { margin: 1rem 0 0; }
 
@@ -95,6 +95,12 @@
       background: var(--blue); color: var(--paper);
       font-size: 1.15rem; font-weight: 700; letter-spacing: 0.04em;
       text-transform: uppercase;
+    }
+    /* Not a button until the Play listing exists, so it must not look tappable. */
+    .badge {
+      display: inline-block; margin: 0; padding: 0.5rem 1rem; border-radius: 999px;
+      background: var(--gold-light); border: 2px solid var(--brown);
+      font-size: 1rem; font-weight: 700;
     }
 
     /* A phone with the gold "tap here" ring, like the app's guidance. */
@@ -263,7 +269,7 @@
         <div>
           <h1>Say what you want to do. Mentu shows you where to tap.</h1>
           <p class="lede">Mentu is your patient phone teacher. It shows you each step on your own phone, so you know how to do it next time.</p>
-          <span class="button" role="img" aria-label="Coming soon to Google Play">Coming soon to Google Play</span>
+          <p class="badge">Coming soon to Google Play</p>
           <p class="note">Mentu is free and works on Android phones.</p>
         </div>
         <div class="phone" role="img" aria-label="A phone screen. Mentu has heard 'send a photo on WhatsApp' and a gold ring circles the button to tap next.">
@@ -351,8 +357,8 @@
         <h2 id="languages">Languages</h2>
         <ul class="languages">
           <li>English</li>
-          <li>Hindi</li>
-          <li>Arabic</li>
+          <li><span lang="hi">हिन्दी</span> Hindi</li>
+          <li><span lang="ar" dir="rtl">العربية</span> Arabic</li>
         </ul>
       </div>
     </section>
