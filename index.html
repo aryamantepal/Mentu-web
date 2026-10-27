@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mentu, your patient phone teacher</title>
   <meta name="description" content="Mentu is a free Android app for people who find phones hard. Say what you want to do, and Mentu shows you where to tap, one step at a time.">
-  <meta name="theme-color" content="#FBF6EC">
+  <meta name="theme-color" content="#E9B949">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Mentu, your patient phone teacher">
   <meta property="og:description" content="Say what you want to do. Mentu shows you where to tap.">
@@ -85,7 +85,7 @@
       font-weight: 800; line-height: 0.95; letter-spacing: -0.02em;
       text-transform: uppercase;
     }
-    h3 { margin: 0 0 0.5rem; font-size: 1.35rem; font-weight: 800; line-height: 1.2; text-transform: uppercase; }
+    h3 { margin: 0 0 0.5rem; font-size: 1.35rem; font-weight: 800; line-height: 1.2; }
     .lede { font-size: 1.25rem; font-weight: 500; max-width: 34rem; margin: 0 0 2rem; }
     .note { margin: 1rem 0 0; }
 
@@ -95,6 +95,12 @@
       background: var(--blue); color: var(--paper);
       font-size: 1.15rem; font-weight: 700; letter-spacing: 0.04em;
       text-transform: uppercase;
+    }
+    /* Not a button until the Play listing exists, so it must not look tappable. */
+    .badge {
+      display: inline-block; margin: 0; padding: 0.5rem 1rem; border-radius: 999px;
+      background: var(--gold-light); border: 2px solid var(--brown);
+      font-size: 1rem; font-weight: 700;
     }
 
     /* A phone with the gold "tap here" ring, like the app's guidance. */
@@ -133,8 +139,7 @@
     .card {
       background: var(--paper); border: 1px solid var(--line); border-radius: 1rem; padding: 1.5rem;
     }
-    .quote { font-size: 1.15rem; margin: 0; }
-
+    
     .steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; counter-reset: step; }
     @media (min-width: 46rem) { .steps { grid-template-columns: repeat(3, 1fr); } }
     .steps li { counter-increment: step; }
@@ -237,6 +242,7 @@
     }
 
     .families p { margin: 0; color: var(--ink-muted); }
+    .families p + p { margin-top: 1rem; }
 
     footer { background: var(--brown); color: var(--cream); padding: 2.5rem 0 3rem; }
     footer a { color: var(--cream); display: inline-block; padding: 0.4rem 0; }
@@ -248,10 +254,9 @@
       <div class="brand"><span class="mark" aria-hidden="true"><span></span></span>Mentu</div>
       <nav class="nav" aria-label="On this page">
         <ul>
-          <li><a href="#what">What is Mentu</a></li>
           <li><a href="#how">How it works</a></li>
-          <li><a href="#promise">Our promise</a></li>
           <li><a href="#families">Families</a></li>
+          <li><a href="#promise">Our promise</a></li>
         </ul>
       </nav>
     </div>
@@ -263,7 +268,7 @@
         <div>
           <h1>Say what you want to do. Mentu shows you where to tap.</h1>
           <p class="lede">Mentu is your patient phone teacher. It shows you each step on your own phone, so you know how to do it next time.</p>
-          <span class="button" role="img" aria-label="Coming soon to Google Play">Coming soon to Google Play</span>
+          <p class="badge">Coming soon to Google Play</p>
           <p class="note">Mentu is free and works on Android phones.</p>
         </div>
         <div class="phone" role="img" aria-label="A phone screen. Mentu has heard 'send a photo on WhatsApp' and a gold ring circles the button to tap next.">
@@ -276,13 +281,6 @@
             <div class="target"></div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section aria-labelledby="what">
-      <div class="wrap">
-        <h2 id="what">What is Mentu?</h2>
-        <p class="card quote">Mentu is a free Android app that helps people who find phones hard. You say what you want to do, like "send a photo on WhatsApp", and Mentu highlights where to tap on your own screen, one step at a time. It teaches; it never taps for you.</p>
       </div>
     </section>
 
@@ -322,6 +320,16 @@
       </div>
     </section>
 
+    <section aria-labelledby="families">
+      <div class="wrap">
+        <div class="card families">
+          <h2 id="families">Helping a parent with their phone?</h2>
+          <p>Set Mentu up for them once. It takes about 5 minutes. You turn on one switch in Settings, and Mentu shows you where it is.</p>
+          <p>After that, they can ask Mentu instead of waiting for you to call back.</p>
+        </div>
+      </div>
+    </section>
+
     <section aria-labelledby="examples">
       <div class="wrap">
         <h2 id="examples">Things you can say</h2>
@@ -337,6 +345,7 @@
     <section class="band" aria-labelledby="promise">
       <div class="wrap">
         <h2 id="promise">Our promise</h2>
+        <p>To show you where to tap, Mentu reads the names of the buttons on your screen. It sends them to Mentu's server to work out the next step. It never sends a picture of your screen.</p>
         <ul class="promise">
           <li>Mentu teaches. It never taps for you.</li>
           <li>It never reads your passwords or PINs.</li>
@@ -351,20 +360,12 @@
         <h2 id="languages">Languages</h2>
         <ul class="languages">
           <li>English</li>
-          <li>Hindi</li>
-          <li>Arabic</li>
+          <li><span lang="hi">हिन्दी</span> Hindi</li>
+          <li><span lang="ar" dir="rtl">العربية</span> Arabic</li>
         </ul>
       </div>
     </section>
 
-    <section aria-labelledby="families">
-      <div class="wrap">
-        <div class="card families">
-          <h2 id="families">Helping a parent with their phone?</h2>
-          <p>Set Mentu up for them once. After that, they can ask Mentu instead of waiting for you to call back.</p>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer>
