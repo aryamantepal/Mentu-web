@@ -1,0 +1,108 @@
+:root {
+  --cream: #FBF6EC;
+  --paper: #FFFDF8;
+  --sand: #F2E8D5;
+  --line: #E0D2B8;
+  --ink: #2A2320;
+  --ink-muted: #5A4E44;
+  --brown: #4C2B1A;
+  --gold: #E9B949;
+  --gold-light: #FFE8A0;
+  --orange: #EE934A;
+  --blue: #27509A;
+  /* Logo colours, from the "Guided m" mark */
+  --logo-sand: #F5E6D0;
+  --logo-blue: #2347C5;
+  --logo-orange: #F46A35;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { font-size: 125%; } /* 20px body that still follows the browser's text size */
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+}
+a { color: var(--blue); text-decoration: underline; text-underline-offset: 0.15em; }
+a:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+p { margin: 0 0 1rem; }
+.wrap { max-width: 72rem; margin: 0 auto; padding: 0 1rem; }
+section { padding: 3.5rem 0; }
+
+.top { background: var(--gold); }
+.top .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1rem; padding-top: 1rem; padding-bottom: 1rem; }
+.brand { display: flex; align-items: center; gap: 0.6rem; font-weight: 800; font-size: 1.3rem; letter-spacing: -0.01em; }
+.mark {
+  display: block; width: 2.4rem; height: 2.4rem; border-radius: 0.7rem;
+  background: var(--logo-sand); border: 1px solid rgba(42, 35, 32, 0.12);
+}
+.mark path { fill: none; stroke: var(--logo-blue); stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; }
+.mark circle { fill: var(--logo-orange); }
+
+.nav { display: none; }
+@media (min-width: 46rem) { .nav { display: block; } }
+.nav ul { display: flex; list-style: none; margin: 0; padding: 0; }
+.nav li + li { border-left: 1px solid var(--brown); }
+.nav a {
+  display: flex; align-items: center; min-height: 3rem; padding: 0 1.1rem;
+  color: var(--ink); font-size: 1rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+
+h1 {
+  margin: 0 0 1.75rem;
+  font-size: clamp(3rem, 9vw, 8rem);
+  font-weight: 800; line-height: 0.85; letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+h2 {
+  margin: 0 0 1.5rem;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 800; line-height: 0.95; letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+h3 { margin: 0 0 0.5rem; font-size: 1.35rem; font-weight: 800; line-height: 1.2; }
+
+.button {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 3.6rem; padding: 1rem 2rem; border-radius: 0.6rem;
+  background: var(--blue); color: var(--paper);
+  font-size: 1.15rem; font-weight: 700; letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.card {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 1rem; padding: 1.5rem;
+}
+
+footer { background: var(--brown); color: var(--cream); padding: 2.5rem 0 3rem; }
+footer a { color: var(--cream); display: inline-block; padding: 0.4rem 0; }
+footer p { margin: 0; }
+.footer-links { list-style: none; margin: 0 0 1rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0 1.5rem; }
+.footer-links a { display: inline-flex; align-items: center; min-height: 2.8rem; padding: 0; }
+
+/* Header: the brand is a link on pages other than the home page. */
+a.brand { color: var(--ink); min-height: 2.8rem; }
+.prose .link { display: inline-flex; align-items: center; min-height: 2.8rem; font-weight: 600; }
+.nav.show { display: block; }
+
+/* Legal and help pages: a gold band with the title, then a readable column on cream. */
+.page-head { background: var(--gold); padding: 2.5rem 0 3.5rem; }
+.page-head h1 { margin-bottom: 1.25rem; }
+.updated { margin: 0; font-weight: 600; }
+.prose { max-width: 46rem; padding-top: 3rem; }
+.prose section { padding: 0 0 2.5rem; }
+.prose h2 { font-size: clamp(1.7rem, 4.5vw, 2.4rem); margin-bottom: 1rem; }
+.prose ul { margin: 0 0 1rem; padding-left: 1.4rem; }
+.prose li { margin-bottom: 0.5rem; }
+.prose li::marker { color: var(--brown); }
+
+/* A gap that is not known yet. It is marked, never filled in with a guess. */
+.tbc {
+  margin: 0 0 1rem; padding: 0.75rem 1rem; border-radius: 0.6rem;
+  background: var(--gold-light); border: 2px dashed var(--brown);
+}
+.tbc strong { text-transform: uppercase; letter-spacing: 0.04em; }

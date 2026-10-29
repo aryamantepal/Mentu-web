@@ -2,8 +2,9 @@
 
 Notes for coding agents working on this repository. README.md has the deploy and domain steps.
 
-- The site is a single static `index.html`, with no build step and no JavaScript. Keep it that way
-  until a second page exists, then move to Astro (MIT).
+- The site is plain static HTML and CSS at the repo root, with no build step and no framework.
+  JavaScript is allowed where a page needs it, but prefer CSS. Pages are `.html` files, served
+  without the extension by `vercel.json` (`cleanUrls`). Shared styles live in `styles.css`.
 - It is hosted on Vercel as the project `mentu-web`, at https://mentu-web-fawn.vercel.app. Each
   push to `main` deploys to production, and each pull request gets a preview link.
   `mentu-web.vercel.app` is another person's site, so never link to it.
@@ -20,7 +21,7 @@ Notes for coding agents working on this repository. README.md has the deploy and
   - Use the app's colours. Orange is for shapes only, never text.
   - Respect `prefers-reduced-motion`.
 - The layout follows https://www.khyaal.com/us, in Mentu's colours. New pages reuse it:
-  - Colours are tokens on `:root` in `index.html`. Use the tokens, not new hex values.
+  - Colours are tokens on `:root` in `styles.css`. Use the tokens, not new hex values.
   - The top band is gold, with a very large, extra-bold, uppercase headline. Its size uses
     `clamp()` so it fits a 360px screen.
   - Nav links are small, uppercase and split by thin lines.

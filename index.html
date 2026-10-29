@@ -21,87 +21,14 @@
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
   }
   </script>
+  <link rel="stylesheet" href="styles.css">
   <style>
-    :root {
-      --cream: #FBF6EC;
-      --paper: #FFFDF8;
-      --sand: #F2E8D5;
-      --line: #E0D2B8;
-      --ink: #2A2320;
-      --ink-muted: #5A4E44;
-      --brown: #4C2B1A;
-      --gold: #E9B949;
-      --gold-light: #FFE8A0;
-      --orange: #EE934A;
-      --blue: #27509A;
-      /* Logo colours, from the "Guided m" mark */
-      --logo-sand: #F5E6D0;
-      --logo-blue: #2347C5;
-      --logo-orange: #F46A35;
-    }
-    *, *::before, *::after { box-sizing: border-box; }
-    html { font-size: 125%; } /* 20px body that still follows the browser's text size */
-    body {
-      margin: 0;
-      background: var(--cream);
-      color: var(--ink);
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      font-size: 1rem;
-      line-height: 1.5;
-      overflow-wrap: break-word;
-    }
-    a { color: var(--blue); text-decoration: underline; text-underline-offset: 0.15em; }
-    a:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
-    p { margin: 0 0 1rem; }
-    .wrap { max-width: 72rem; margin: 0 auto; padding: 0 1rem; }
-    section { padding: 3.5rem 0; }
-
-    .top { background: var(--gold); }
-    .top .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1rem; padding-top: 1rem; padding-bottom: 1rem; }
-    .brand { display: flex; align-items: center; gap: 0.6rem; font-weight: 800; font-size: 1.3rem; letter-spacing: -0.01em; }
-    .mark {
-      display: block; width: 2.4rem; height: 2.4rem; border-radius: 0.7rem;
-      background: var(--logo-sand); border: 1px solid rgba(42, 35, 32, 0.12);
-    }
-    .mark path { fill: none; stroke: var(--logo-blue); stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; }
-    .mark circle { fill: var(--logo-orange); }
-
-    .nav { display: none; }
-    @media (min-width: 46rem) { .nav { display: block; } }
-    .nav ul { display: flex; list-style: none; margin: 0; padding: 0; }
-    .nav li + li { border-left: 1px solid var(--brown); }
-    .nav a {
-      display: flex; align-items: center; min-height: 3rem; padding: 0 1.1rem;
-      color: var(--ink); font-size: 1rem; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.04em;
-    }
-
     .hero { background: var(--gold); padding: 2.5rem 0 4.5rem; }
     .hero .wrap { display: grid; gap: 3rem; align-items: center; }
     @media (min-width: 46rem) { .hero .wrap { grid-template-columns: 1.3fr 1fr; } }
-    h1 {
-      margin: 0 0 1.75rem;
-      font-size: clamp(3rem, 9vw, 8rem);
-      font-weight: 800; line-height: 0.85; letter-spacing: -0.02em;
-      text-transform: uppercase;
-    }
-    h2 {
-      margin: 0 0 1.5rem;
-      font-size: clamp(2.2rem, 5vw, 3.6rem);
-      font-weight: 800; line-height: 0.95; letter-spacing: -0.02em;
-      text-transform: uppercase;
-    }
-    h3 { margin: 0 0 0.5rem; font-size: 1.35rem; font-weight: 800; line-height: 1.2; }
     .lede { font-size: 1.25rem; font-weight: 500; max-width: 34rem; margin: 0 0 2rem; }
     .note { margin: 1rem 0 0; }
 
-    .button {
-      display: inline-flex; align-items: center; justify-content: center;
-      min-height: 3.6rem; padding: 1rem 2rem; border-radius: 0.6rem;
-      background: var(--blue); color: var(--paper);
-      font-size: 1.15rem; font-weight: 700; letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
     /* Not a button until the Play listing exists, so it must not look tappable. */
     .badge {
       display: inline-block; margin: 0; padding: 0.5rem 1rem; border-radius: 999px;
@@ -142,10 +69,6 @@
       border-radius: 0.7rem; padding: 0.35rem 0.6rem; font-size: 1rem; font-weight: 700; white-space: nowrap;
     }
 
-    .card {
-      background: var(--paper); border: 1px solid var(--line); border-radius: 1rem; padding: 1.5rem;
-    }
-    
     .steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; counter-reset: step; }
     @media (min-width: 46rem) { .steps { grid-template-columns: repeat(3, 1fr); } }
     .steps li { counter-increment: step; }
@@ -249,9 +172,6 @@
 
     .families p { margin: 0; color: var(--ink-muted); }
     .families p + p { margin-top: 1rem; }
-
-    footer { background: var(--brown); color: var(--cream); padding: 2.5rem 0 3rem; }
-    footer a { color: var(--cream); display: inline-block; padding: 0.4rem 0; }
 
     /* Loading screen: the "Guided m" draws itself, the tap dot drops and lands, then the
        screen fades to the page. It plays once, with no JavaScript, and only for readers who
@@ -456,7 +376,11 @@
 
   <footer>
     <div class="wrap">
-      <!-- Add links to the privacy, delete-account, terms and help pages here. Play requires those pages before release, and Mentu/website.md section 2 describes them. -->
+      <ul class="footer-links">
+        <li><a href="/privacy">Privacy</a></li>
+        <li><a href="/terms">Terms</a></li>
+        <li><a href="/delete-account">Delete your account</a></li>
+      </ul>
       <p>© 2026 Mentu</p>
     </div>
   </footer>
