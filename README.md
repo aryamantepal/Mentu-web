@@ -7,9 +7,18 @@ Live at https://mentu-web-fawn.vercel.app until the domain is bought.
 
 ## What's here
 
-One static page, `index.html`, with its CSS inline and no JavaScript or build step. Open it in a
-browser to preview it. Move to Astro once the site needs a second page (privacy, delete account,
-terms, help, guides).
+Plain static HTML and CSS, with no build step and no framework. Open any `.html` file in a browser
+to preview it.
+
+- `index.html` is the home page. Its home-only CSS is inline.
+- `privacy.html`, `terms.html` and `delete-account.html` are the legal pages. Play and the app link
+  to them at `/privacy`, `/terms` and `/delete-account`, so keep those URLs stable.
+- `styles.css` holds the styles every page shares: colour tokens, header, footer, cards and buttons.
+- `vercel.json` turns on `cleanUrls`, so Vercel serves `privacy.html` at `/privacy`. This only works
+  on Vercel. Locally, open the `.html` file, because the footer links point at the clean URLs.
+
+Marked "To be confirmed" notes on the legal pages are gaps: TypeSafe's data terms, launch countries,
+the support email (needs the domain) and a lawyer's review.
 
 ## Deploying
 
