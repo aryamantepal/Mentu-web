@@ -6,6 +6,7 @@
   <title>Mentu, your patient phone teacher</title>
   <meta name="description" content="Mentu is a free Android app for people who find phones hard. Say what you want to do, and Mentu shows you where to tap, one step at a time.">
   <meta name="theme-color" content="#E9B949">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Mentu, your patient phone teacher">
   <meta property="og:description" content="Say what you want to do. Mentu shows you where to tap.">
@@ -33,6 +34,10 @@
       --gold-light: #FFE8A0;
       --orange: #EE934A;
       --blue: #27509A;
+      /* Logo colours, from the "Guided m" mark */
+      --logo-sand: #F5E6D0;
+      --logo-blue: #2347C5;
+      --logo-orange: #F46A35;
     }
     *, *::before, *::after { box-sizing: border-box; }
     html { font-size: 125%; } /* 20px body that still follows the browser's text size */
@@ -55,10 +60,11 @@
     .top .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1rem; padding-top: 1rem; padding-bottom: 1rem; }
     .brand { display: flex; align-items: center; gap: 0.6rem; font-weight: 800; font-size: 1.3rem; letter-spacing: -0.01em; }
     .mark {
-      width: 2.4rem; height: 2.4rem; border-radius: 0.6rem;
-      background: var(--orange); display: grid; place-items: center;
+      display: block; width: 2.4rem; height: 2.4rem; border-radius: 0.7rem;
+      background: var(--logo-sand); border: 1px solid rgba(42, 35, 32, 0.12);
     }
-    .mark span { width: 0.9rem; height: 0.9rem; border-radius: 50%; border: 0.22rem solid var(--paper); }
+    .mark path { fill: none; stroke: var(--logo-blue); stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; }
+    .mark circle { fill: var(--logo-orange); }
 
     .nav { display: none; }
     @media (min-width: 46rem) { .nav { display: block; } }
@@ -251,7 +257,7 @@
 <body>
   <header class="top">
     <div class="wrap">
-      <div class="brand"><span class="mark" aria-hidden="true"><span></span></span>Mentu</div>
+      <div class="brand"><svg class="mark" viewBox="18 18 72 72" aria-hidden="true"><path d="M34 72 V49 A10 10 0 0 1 54 49 V72 M54 49 A10 10 0 0 1 74 49 V58"/><circle cx="74" cy="72" r="5.5"/></svg>Mentu</div>
       <nav class="nav" aria-label="On this page">
         <ul>
           <li><a href="#how">How it works</a></li>
