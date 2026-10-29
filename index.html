@@ -252,9 +252,89 @@
 
     footer { background: var(--brown); color: var(--cream); padding: 2.5rem 0 3rem; }
     footer a { color: var(--cream); display: inline-block; padding: 0.4rem 0; }
+
+    /* Loading screen: the "Guided m" draws itself, the tap dot drops and lands, then the
+       screen fades to the page. It plays once, with no JavaScript, and only for readers who
+       allow motion. Everyone else lands straight on the page. */
+    .splash { display: none; }
+    @media (prefers-reduced-motion: no-preference) {
+      .splash {
+        position: fixed; inset: 0; z-index: 100; overflow: hidden;
+        display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;
+        background: var(--cream); color: var(--ink);
+        animation: splashOut 0.4s ease 1.3s forwards;
+      }
+    }
+    .splash-blobs { position: absolute; inset: 0; pointer-events: none; }
+    .splash-blobs span { position: absolute; border-radius: 50%; }
+    .splash-blobs span:nth-child(1) { top: 12%; left: 8%; width: 220px; height: 220px; background: var(--orange); opacity: 0.1; animation: driftA 20s ease-in-out infinite; }
+    .splash-blobs span:nth-child(2) { bottom: 10%; right: 9%; width: 280px; height: 280px; background: var(--gold); opacity: 0.14; animation: driftB 24s ease-in-out infinite; }
+    .splash-blobs span:nth-child(3) { bottom: 18%; left: 16%; width: 120px; height: 120px; background: var(--logo-blue); opacity: 0.06; animation: driftB 18s ease-in-out infinite; }
+    .splash-logo { position: relative; width: 180px; height: 180px; overflow: visible; }
+    .splash-logo * { transform-box: fill-box; }
+    .splash-shadow { fill: var(--ink); opacity: 0; transform-origin: 50% 50%; animation: shadowLife 1.3s linear forwards; }
+    .splash-m {
+      fill: none; stroke: var(--logo-blue); stroke-width: 9; stroke-linecap: round; stroke-linejoin: round;
+      stroke-dasharray: 100 100; stroke-dashoffset: 100; animation: drawM 1.3s linear forwards;
+    }
+    .splash-ripple { fill: none; stroke: var(--logo-orange); stroke-width: 1.6; opacity: 0; transform-origin: 50% 50%; animation: rippleLife 1.3s ease-out forwards; }
+    .splash-dot { fill: var(--logo-orange); opacity: 0; transform-origin: 50% 100%; animation: dotLife 1.3s linear forwards; }
+    .splash-words { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; opacity: 0; animation: wordLife 1.3s ease-out forwards; }
+    .splash-name { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.015em; }
+    .splash-tagline { color: var(--ink-muted); }
+    .splash-bar { margin-top: 1.1rem; width: 220px; height: 4px; border-radius: 2px; background: rgba(35, 71, 197, 0.16); overflow: hidden; }
+    .splash-bar span { display: block; height: 100%; border-radius: 2px; background: var(--logo-blue); transform-origin: 0 50%; transform: scaleX(0); animation: barFill 1.3s linear forwards; }
+
+    @keyframes splashOut { to { opacity: 0; visibility: hidden; } }
+    @keyframes drawM {
+      0% { stroke-dashoffset: 100; opacity: 1; animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+      38%, 100% { stroke-dashoffset: 0; opacity: 1; }
+    }
+    @keyframes dotLife {
+      0%, 37% { opacity: 0; transform: translateY(-38px) scale(1); }
+      38% { opacity: 1; transform: translateY(-38px) scale(0.9, 1.1); animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45); }
+      56% { transform: translateY(0) scale(1); }
+      62% { transform: translateY(0) scale(1.4, 0.65); }
+      72%, 100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes rippleLife {
+      0%, 55% { opacity: 0; transform: scale(1); }
+      57% { opacity: 0.85; transform: scale(1); }
+      90%, 100% { opacity: 0; transform: scale(3.2); }
+    }
+    @keyframes shadowLife {
+      0%, 37% { opacity: 0; transform: scale(0.3, 1); }
+      56% { opacity: 0.14; transform: scale(1, 1); }
+      62% { opacity: 0.14; transform: scale(1.25, 1); }
+      72%, 100% { opacity: 0.14; transform: scale(1, 1); }
+    }
+    @keyframes wordLife {
+      0%, 40% { opacity: 0; transform: translateY(10px); }
+      65%, 100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes barFill {
+      0%, 40% { transform: scaleX(0); animation-timing-function: cubic-bezier(0.3, 0.6, 0.4, 1); }
+      95%, 100% { transform: scaleX(1); }
+    }
+    @keyframes driftA { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(30px, -36px) scale(1.06); } }
+    @keyframes driftB { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-26px, 30px) scale(0.94); } }
   </style>
 </head>
 <body>
+  <div class="splash" aria-hidden="true">
+    <div class="splash-blobs"><span></span><span></span><span></span></div>
+    <svg class="splash-logo" viewBox="18 18 72 72">
+      <ellipse class="splash-shadow" cx="74" cy="79.5" rx="6" ry="1.4"/>
+      <path class="splash-m" d="M34 72 V49 A10 10 0 0 1 54 49 V72 M54 49 A10 10 0 0 1 74 49 V58" pathLength="100"/>
+      <circle class="splash-ripple" cx="74" cy="72" r="5.5"/>
+      <circle class="splash-dot" cx="74" cy="72" r="5.5"/>
+    </svg>
+    <div class="splash-words">
+      <span class="splash-name">Mentu</span>
+      <span class="splash-tagline">Just ask. Mentu shows you.</span>
+      <div class="splash-bar"><span></span></div>
+    </div>
+  </div>
   <header class="top">
     <div class="wrap">
       <div class="brand"><svg class="mark" viewBox="18 18 72 72" aria-hidden="true"><path d="M34 72 V49 A10 10 0 0 1 54 49 V72 M54 49 A10 10 0 0 1 74 49 V58"/><circle cx="74" cy="72" r="5.5"/></svg>Mentu</div>
